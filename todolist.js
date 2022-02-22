@@ -17,13 +17,10 @@ const addItem = ()=>{
     button.appendChild(buttontext) 
     li.appendChild(button)
     button.classList.add("del")
-    console.log(li)
     todo.appendChild(li)
     li.classList.add("list-item")
     text.value = ""
-    button.addEventListener("click", function(){
-        this.parentNode.remove();
-    })
+    button.addEventListener("click", function(){this.parentNode.remove();})
 }
 
 // 
@@ -38,10 +35,11 @@ const addItemKey = (e=>{
     if (e.keyCode===13&&text.value.length>0) addItem()
 })
 
+const removeAE = ()=> todo.innerHTML = "";
+
+
 // event listeners
 text.addEventListener("keydown", addItemKey)
 addbtn.addEventListener("click", addItemClick)
 remove.addEventListener("click", removelast)
-removeAll.addEventListener("click", function(){
-    todo.innerHTML = ""
-})
+removeAll.addEventListener("click", removeAE)
