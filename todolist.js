@@ -3,11 +3,11 @@ let text = document.getElementById("text")
 let addbtn = document.getElementById("Add")
 let todo = document.querySelector(".todo")
 let remove = document.getElementById("remove")
-let del = document.querySelector(".del")
+let removeAll = document.getElementById("remove-all")
 
 
 
-
+//constants
 const addItem = ()=>{
     let li = document.createElement("li")
     let listtext = document.createTextNode(text.value)
@@ -20,14 +20,13 @@ const addItem = ()=>{
     console.log(li)
     todo.appendChild(li)
     li.classList.add("list-item")
-    console.log(li)
     text.value = ""
+    button.addEventListener("click", function(){
+        this.parentNode.remove();
+    })
 }
 
-const clear = ()=>{
-    let first = todo.firstElementChild
-    todo.removeChild(first)
-}
+// 
 const removelast = ()=>{
     let last = todo.lastElementChild
     todo.removeChild(last)
@@ -39,7 +38,10 @@ const addItemKey = (e=>{
     if (e.keyCode===13&&text.value.length>0) addItem()
 })
 
+// event listeners
 text.addEventListener("keydown", addItemKey)
 addbtn.addEventListener("click", addItemClick)
 remove.addEventListener("click", removelast)
-del.addEventListener("click", clear)
+removeAll.addEventListener("click", function(){
+    todo.innerHTML = ""
+})
